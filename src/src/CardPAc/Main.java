@@ -2,7 +2,7 @@ package CardPAc;
 
 public class Main {
     public static void main(String[] args) {
-        Deck deck = new Deck(4);
+        Deck deck = new Deck(36);
         try {
             deck.makeDeck();
         } catch (ArrayIndexOutOfBoundsException e) {
