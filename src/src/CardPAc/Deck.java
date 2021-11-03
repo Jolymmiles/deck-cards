@@ -44,7 +44,6 @@ public class Deck {
 
     //Сортировка
     public void sortDeck() {
-
         List<Rank>  test1 = new ArrayList<Rank>(Arrays.asList(Rank.values()));
         boolean flagSord = false;
         while (!flagSord) {
@@ -72,10 +71,6 @@ public class Deck {
                 }
             }
         }
-
-
-
-
 
     }
 
