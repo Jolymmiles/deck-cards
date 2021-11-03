@@ -1,6 +1,9 @@
 package CardPAc;
 
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Deck {
@@ -37,6 +40,43 @@ public class Deck {
             this.deck[card] = this.deck[newPosition];
             this.deck[newPosition] = timeCard;
         }
+    }
+
+    //Сортировка
+    public void sortDeck() {
+
+        List<Rank>  test1 = new ArrayList<Rank>(Arrays.asList(Rank.values()));
+        boolean flagSord = false;
+        while (!flagSord) {
+            flagSord=true;
+            for (int i = 0; i < this.deck.length-1; i+=1) {
+                if (test1.indexOf(this.deck[i].getRank()) > test1.indexOf(this.deck[i+1].getRank())) {
+                    flagSord =false;
+                    Card timeVar = this.deck[i];
+                    this.deck[i] = this.deck[i+1];
+                    deck[i+1] = timeVar;
+                }
+            }
+        }
+
+        List<Suit>  test = new ArrayList<Suit>(Arrays.asList(Suit.values()));
+        boolean flagSorted =false;
+        while (!flagSorted) {
+            flagSorted=true;
+            for (int i = 0; i < this.deck.length-1; i+=1) {
+                if (test.indexOf(this.deck[i].getSuit()) > test.indexOf(this.deck[i+1].getSuit())) {
+                    flagSorted =false;
+                    Card timeVar = this.deck[i];
+                    this.deck[i] = this.deck[i+1];
+                    deck[i+1] = timeVar;
+                }
+            }
+        }
+
+
+
+
+
     }
 
     @Override

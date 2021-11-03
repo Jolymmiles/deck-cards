@@ -10,6 +10,9 @@ public class Main {
             //Перетасовка
             deck.reshuffle();
             System.out.println(deck);
+            System.out.println("---------------------");
+            deck.sortDeck();
+            System.out.println(deck);
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
         }
