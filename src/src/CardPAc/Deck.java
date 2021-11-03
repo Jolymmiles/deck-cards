@@ -21,9 +21,9 @@ public class Deck {
         int i = 0;
         Rank[] rankArray = Rank.values();
         for (Suit suit : Suit.values()) {
-            for (int k = deck.length == 52 ? 0 : 4; k < Rank.values().length; k++) {
+            for (int k = this.deck.length == 52 ? 0 : 4; k < Rank.values().length; k++) {
                 Card card = new Card(suit, rankArray[k]);
-                deck[i] = card;
+                this.deck[i] = card;
                 i += 1;
             }
         }
@@ -31,11 +31,11 @@ public class Deck {
 
     //Перетосовка
     public void reshuffle() {
-        for (int card = 0; card < deck.length; card++) {
-            int newPosition = random.nextInt(deck.length);
-            Card timeCard = deck[card];
-            deck[card] = deck[newPosition];
-            deck[newPosition] = timeCard;
+        for (int card = 0; card < this.deck.length; card++) {
+            int newPosition = random.nextInt(this.deck.length);
+            Card timeCard = this.deck[card];
+            this.deck[card] = this.deck[newPosition];
+            this.deck[newPosition] = timeCard;
         }
     }
 
