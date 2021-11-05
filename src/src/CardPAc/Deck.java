@@ -2,57 +2,54 @@ package CardPAc;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class Deck {
-    private final Card[] deck;
+    private final List<Card> deck;
     Random random = new Random();
 
     //Конструктор
     public Deck(int size) {
         if (size != 36 & size != 52) {
-            throw new ArrayIndexOutOfBoundsException("Такой колоды не существует!");
+            throw new ArrayIndexOutOfBoundsException("Колоды из " + size + " карт не существует.");
         }
-        this.deck = new Card[size];
+        this.deck = new ArrayList<Card>();
         makeDeck();
     }
 
     //Создание колоды
     private void makeDeck() {
-        int i = 0;
         Rank[] rankArray = Rank.values();
         for (Suit suit : Suit.values()) {
-            for (int k = this.deck.length == 52 ? 0 : 4; k < Rank.values().length; k++) {
+            for (int k = this.deck.size() == 52 ? 0 : 4; k < Rank.values().length; k++) {
                 Card card = new Card(suit, rankArray[k]);
-                this.deck[i] = card;
-                i += 1;
+                this.deck.add(card);
             }
         }
     }
 
     //Перетосовка
     public void reshuffle() {
-        for (int card = 0; card < this.deck.length; card++) {
-            int newPosition = random.nextInt(this.deck.length);
-            Card timeCard = this.deck[card];
-            this.deck[card] = this.deck[newPosition];
-            this.deck[newPosition] = timeCard;
+        for (int card = 0; card < this.deck.size(); card++) {
+            int newPosition = random.nextInt(this.deck.size());
+            Card timeCard = this.deck.get(card);
+            this.deck.set(card, this.deck.get(newPosition));
+            this.deck.set(newPosition, timeCard);
         }
     }
 
-    //Сортировка
+    //Сортировка пузырьком
     public void sortDeck() {
         boolean flagSord = false;
         while (!flagSord) {
             flagSord=true;
-            for (int i = 0; i < this.deck.length-1; i+=1) {
-                if (this.deck[i].getRank().ordinal() > this.deck[i+1].getRank().ordinal()) {
+            for (int i = 0; i < this.deck.size()-1; i+=1) {
+                if (this.deck.get(i).getRank().ordinal() > this.deck.get(i + 1).getRank().ordinal()) {
                     flagSord =false;
-                    Card timeVar = this.deck[i];
-                    this.deck[i] = this.deck[i+1];
-                    deck[i+1] = timeVar;
+                    Card timeVar = this.deck.get(i);
+                    this.deck.set(i, this.deck.get(i + 1));
+                    this.deck.set(i + 1, timeVar);
                 }
             }
         }
@@ -60,30 +57,28 @@ public class Deck {
         boolean flagSorted =false;
         while (!flagSorted) {
             flagSorted=true;
-            for (int i = 0; i < this.deck.length-1; i+=1) {
-                if (this.deck[i].getSuit().ordinal() > this.deck[i+1].getSuit().ordinal()) {
+            for (int i = 0; i < this.deck.size()-1; i+=1) {
+                if (this.deck.get(i).getSuit().ordinal() > this.deck.get(i + 1).getSuit().ordinal()) {
                     flagSorted =false;
-                    Card timeVar = this.deck[i];
-                    this.deck[i] = this.deck[i+1];
-                    deck[i+1] = timeVar;
+                    Card timeVar = this.deck.get(i);
+                    this.deck.set(i, this.deck.get(i + 1));
+                    deck.set(i + 1, timeVar);
                 }
             }
         }
 
     }
 
-    //Тест
+    //Сортировка компоратором
     public void sortComporator() {
-        List<Card> decks = new ArrayList<Card>(Arrays.asList(deck));
-        decks.sort(new CardComparator());
-        System.out.println(decks);
+        this.deck.sort(new CardComparator());
     }
 
 
 
     @Override
     public String toString() {
-        return "Колода: " + Arrays.toString(deck);
+        return "Колода: " + deck;
     }
 
 

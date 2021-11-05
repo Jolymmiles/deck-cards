@@ -1,20 +1,31 @@
 package CardPAc;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Deck deck = new Deck(52);
+        Scanner scanner = new Scanner(System.in);
         try {
             //Создание колоды
+            Deck deck = new Deck(scanner.nextInt());
+            //Вывод колоды
             System.out.println(deck);
-
-            //Перетасовка
+            System.out.println("----------------------------------------------------------------");
+            //Перетасовка колоды
             deck.reshuffle();
+            //Вывод колоды
             System.out.println(deck);
-            System.out.println("---------------------");
-            //Сортировка колоды
+            System.out.println("----------------------------------------------------------------");
+            //Сортировка колоды пузырьком
             //deck.sortDeck();
-            //System.out.println(deck);
+            //Вывод колоды
+            System.out.println(deck);
+            System.out.println("----------------------------------------------------------------");
+            //Сортировка колоды компоратором
             deck.sortComporator();
+            //Вывод колоды
+            System.out.println(deck);
+            System.out.println("----------------------------------------------------------------");
 
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
