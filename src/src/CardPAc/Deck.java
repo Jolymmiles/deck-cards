@@ -1,7 +1,10 @@
 package CardPAc;
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class Deck {
     private final Card[] deck;
@@ -71,9 +74,8 @@ public class Deck {
 
     //Тест
     public void sortComporator() {
-        CardComparator cardComparator = new CardComparator();
         List<Card> decks = new ArrayList<Card>(Arrays.asList(deck));
-        decks.sort(cardComparator);
+        decks.sort(new CardComparator());
         System.out.println(decks);
     }
 
