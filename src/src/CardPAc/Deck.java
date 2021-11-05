@@ -1,13 +1,10 @@
 package CardPAc;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class Deck {
-    private Card[] deck;
+    private final Card[] deck;
     Random random = new Random();
 
     //Конструктор
@@ -44,12 +41,11 @@ public class Deck {
 
     //Сортировка
     public void sortDeck() {
-        List<Rank>  test1 = new ArrayList<Rank>(Arrays.asList(Rank.values()));
         boolean flagSord = false;
         while (!flagSord) {
             flagSord=true;
             for (int i = 0; i < this.deck.length-1; i+=1) {
-                if (test1.indexOf(this.deck[i].getRank()) > test1.indexOf(this.deck[i+1].getRank())) {
+                if (this.deck[i].getRank().ordinal() > this.deck[i+1].getRank().ordinal()) {
                     flagSord =false;
                     Card timeVar = this.deck[i];
                     this.deck[i] = this.deck[i+1];
@@ -58,12 +54,11 @@ public class Deck {
             }
         }
 
-        List<Suit>  test = new ArrayList<Suit>(Arrays.asList(Suit.values()));
         boolean flagSorted =false;
         while (!flagSorted) {
             flagSorted=true;
             for (int i = 0; i < this.deck.length-1; i+=1) {
-                if (test.indexOf(this.deck[i].getSuit()) > test.indexOf(this.deck[i+1].getSuit())) {
+                if (this.deck[i].getSuit().ordinal() > this.deck[i+1].getSuit().ordinal()) {
                     flagSorted =false;
                     Card timeVar = this.deck[i];
                     this.deck[i] = this.deck[i+1];
@@ -74,8 +69,20 @@ public class Deck {
 
     }
 
+    //Тест
+    public void sortComporator() {
+        CardComparator cardComparator = new CardComparator();
+        List<Card> decks = new ArrayList<Card>(Arrays.asList(deck));
+        decks.sort(cardComparator);
+        System.out.println(decks);
+    }
+
+
+
     @Override
     public String toString() {
         return "Колода: " + Arrays.toString(deck);
     }
+
+
 }

@@ -12,8 +12,10 @@ public class Main {
             System.out.println(deck);
             System.out.println("---------------------");
             //Сортировка колоды
-            deck.sortDeck();
-            System.out.println(deck);
+            //deck.sortDeck();
+            //System.out.println(deck);
+            deck.sortComporator();
+
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
         }
