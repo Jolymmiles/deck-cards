@@ -1,5 +1,14 @@
 package CardPAc;
 
 public enum Suit {
-    Diamonds, Clubs, Hearts,  Spades;
+    DIAMONDS("Бубны"), CLUBS("Трефы"), HEARTS("Червы"),  SPADES("Пики");
+    private final String ruSuit;
+
+    Suit(String ruSuit) {
+        this.ruSuit = ruSuit;
+    }
+
+    public String getRuSuit() {
+        return ruSuit;
+    }
 }

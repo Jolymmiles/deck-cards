@@ -2,11 +2,13 @@ package CardPAc;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
 public class Deck {
     private final List<Card> deck;
+    private final int size;
     Random random = new Random();
 
     //Конструктор
@@ -14,7 +16,8 @@ public class Deck {
         if (size != 36 & size != 52) {
             throw new ArrayIndexOutOfBoundsException("Колоды из " + size + " карт не существует.");
         }
-        this.deck = new ArrayList<Card>();
+        this.deck = new ArrayList<Card>(size);
+        this.size = size;
         makeDeck();
     }
 
@@ -22,7 +25,7 @@ public class Deck {
     private void makeDeck() {
         Rank[] rankArray = Rank.values();
         for (Suit suit : Suit.values()) {
-            for (int k = this.deck.size() == 52 ? 0 : 4; k < Rank.values().length; k++) {
+            for (int k = this.size == 52 ? 0 : 4; k < Rank.values().length; k++) {
                 Card card = new Card(suit, rankArray[k]);
                 this.deck.add(card);
             }
@@ -39,41 +42,11 @@ public class Deck {
         }
     }
 
-    //Сортировка пузырьком
-    public void sortDeck() {
-        boolean flagSord = false;
-        while (!flagSord) {
-            flagSord=true;
-            for (int i = 0; i < this.deck.size()-1; i+=1) {
-                if (this.deck.get(i).getRank().ordinal() > this.deck.get(i + 1).getRank().ordinal()) {
-                    flagSord =false;
-                    Card timeVar = this.deck.get(i);
-                    this.deck.set(i, this.deck.get(i + 1));
-                    this.deck.set(i + 1, timeVar);
-                }
-            }
-        }
-
-        boolean flagSorted =false;
-        while (!flagSorted) {
-            flagSorted=true;
-            for (int i = 0; i < this.deck.size()-1; i+=1) {
-                if (this.deck.get(i).getSuit().ordinal() > this.deck.get(i + 1).getSuit().ordinal()) {
-                    flagSorted =false;
-                    Card timeVar = this.deck.get(i);
-                    this.deck.set(i, this.deck.get(i + 1));
-                    deck.set(i + 1, timeVar);
-                }
-            }
-        }
-
-    }
 
     //Сортировка компоратором
     public void sortComporator() {
-        this.deck.sort(new CardComparator());
+        Collections.sort(this.deck);
     }
-
 
 
     @Override

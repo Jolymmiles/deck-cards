@@ -1,4 +1,4 @@
-package CardPAc;
+import CardPAc.Deck;
 
 import java.util.Scanner;
 
@@ -13,11 +13,6 @@ public class Main {
             System.out.println("----------------------------------------------------------------");
             //Перетасовка колоды
             deck.reshuffle();
-            //Вывод колоды
-            System.out.println(deck);
-            System.out.println("----------------------------------------------------------------");
-            //Сортировка колоды пузырьком
-            //deck.sortDeck();
             //Вывод колоды
             System.out.println(deck);
             System.out.println("----------------------------------------------------------------");

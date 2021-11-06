@@ -1,6 +1,6 @@
 package CardPAc;
 
-public class Card {
+public class Card implements Comparable<Card> {
     private final Rank rank;
     private final Suit suit;
 
@@ -20,8 +20,24 @@ public class Card {
 
     @Override
     public String toString() {
-        return "\nCard:" +
-                "\nSuit: " + rank +
-                "\nRank: " + suit + "\n";
+        return "\nКарта(" + "Масть: " + suit.getRuSuit() + ", Номинал: " + rank.getRuRank() + ")";
+    }
+
+
+    @Override
+    public int compareTo(Card o) {
+        if (this.getSuit().equals(o.getSuit())) {
+            if (this.getRank().equals(o.getRank())) {
+                return 0;
+            } if (this.getRank().ordinal() > o.getRank().ordinal()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } else if (this.getSuit().ordinal() > o.getSuit().ordinal()) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 }
