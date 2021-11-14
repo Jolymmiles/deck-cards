@@ -1,6 +1,6 @@
 package CardPAc;
 
-public enum Suit {
+public enum Suit{
     DIAMONDS("Бубны"), CLUBS("Трефы"), HEARTS("Червы"),  SPADES("Пики");
     private final String ruSuit;
 

@@ -24,8 +24,9 @@ public class Deck {
     //Создание колоды
     private void makeDeck() {
         Rank[] rankArray = Rank.values();
+        int getSizeofDeck = this.size == 52 ? 0 : 4;
         for (Suit suit : Suit.values()) {
-            for (int k = this.size == 52 ? 0 : 4; k < Rank.values().length; k++) {
+            for (int k = getSizeofDeck; k < Rank.values().length; k++) {
                 Card card = new Card(suit, rankArray[k]);
                 this.deck.add(card);
             }
